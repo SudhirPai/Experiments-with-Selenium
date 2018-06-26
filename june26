@@ -1,0 +1,71 @@
+package sel_enium;
+import org.openqa.selenium.*;
+//import java.util.*;
+import org.openqa.selenium.support.ui.Select;
+
+//import org.openqa.selenium.firefox.FirefoxDriver; 
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.interactions.Actions;
+public class One extends Thread {
+	
+	
+	public void run()
+	{
+		System.setProperty("webdriver.chrome.driver","D:\\eclipse\\driver\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+
+ 	   
+ 	     String baseUrl = "http://demo.guru99.com/test/newtours/register.php";
+          
+ 	     driver.get(baseUrl);
+          WebElement First_Name = driver.findElement(By.name("firstName"));
+          WebElement Last_Name= driver.findElement(By.name("lastName"));
+          WebElement Phone=driver.findElement(By.name("phone"));
+          WebElement Email=driver.findElement(By.id("userName"));
+          WebElement Address= driver.findElement(By.name("address1"));
+          WebElement City= driver.findElement(By.name("city"));
+          WebElement State = driver.findElement(By.name("state"));
+          WebElement Postal_Code = driver.findElement(By.name("postalCode"));
+          Select drpCountry= new Select (driver.findElement(By.name("country")));
+          WebElement Password= driver.findElement(By.name("password"));
+          WebElement Confirm_password= driver.findElement(By.name("confirmPassword"));
+          WebElement User=driver.findElement(By.id("email"));
+          WebElement submit= driver.findElement(By.name("submit"));
+          
+          First_Name.sendKeys("Jorah");
+          Last_Name.sendKeys("Mormount");
+          Phone.sendKeys("987456123");
+          Email.sendKeys("jorah_Mor@GOT.com");
+          Address.sendKeys("the Lords of Bear Island and vassals of House Stark in the North.");  
+          City.sendKeys("Bear Islands");
+          State.sendKeys("Alive and recovering from the disease");
+          Postal_Code.sendKeys("600034");
+          drpCountry.selectByVisibleText("INDONESIA");
+          User.sendKeys("jorah_Mor@GOT.com");
+          Password.sendKeys("hahaha");
+          Confirm_password.sendKeys("hahaha");
+          try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+          submit.click();
+          
+          driver.close();
+         
+		
+	     System.out.println("Success....");
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//System.setProperty("webdriver.firefox.marionette","D:\\geckodriver.exe");
+		//WebDriver driver = new FirefoxDriver();
+		One th=new One();
+		th.start();
+	       
+		}
+
+	
+}
